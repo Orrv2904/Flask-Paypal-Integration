@@ -1,32 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paypal Checkout</title>
 </head>
 <body>
 <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 <div id="paypal-button-container"></div>
-<script>
-    paypal.Buttons({
-        createOrder: (data, actions) => {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '77.44' 
-                    },
-                    name: 'Producto1',
-                    description: 'Carnes - Producto delicioso',
-                }]
-            });
-        },
-        onApprove: (data, actions) => {
-            return actions.order.capture().then(function (orderData) {
-                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                const transaction = orderData.purchase_units[0].payments.captures[0];
-                alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
-            });
-        }
-    }).render('#paypal-button-container');
-</script>
+<script src="{{url_for('static', filename='logic.js')}}"></script>
 </body>
 </html>
