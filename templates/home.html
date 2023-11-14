@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+</head>
+<body>
+    <ul>
+        {% for producto in productos %}
+            <li>
+                <strong>ID:</strong> {{ producto.id }}<br>
+                <strong>Nombre:</strong> {{ producto.nombre }}<br>
+                <strong>Descripción:</strong> {{ producto.descripciom }}<br>
+                <strong>Precio:</strong> {{ producto.precio }}<br>
+                <form action="/producto/{{ producto['id'] }}" method="post">
+                    <input type="submit" value="Comprar producto"></input>
+                </form>
+                <hr>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
